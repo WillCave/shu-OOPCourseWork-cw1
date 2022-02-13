@@ -1,0 +1,89 @@
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Candidates](
+	[CandidateId] [int] IDENTITY(1,1) NOT NULL,
+	[VoteEventId] [int] NOT NULL,
+	[CandidateName] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_Candidates] PRIMARY KEY CLUSTERED 
+(
+	[CandidateId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [varchar](50) NOT NULL,
+	[PasswordHash] [varchar](255) NOT NULL,
+	[UserRole] [int] NOT NULL,
+	[FirstName] [varchar](50) NOT NULL,
+	[LastName] [varchar](50) NOT NULL,
+	[EntryDateTime] [date] NOT NULL,
+	[UpdateDateTime] [date] NOT NULL,
+ CONSTRAINT [PK_tUser] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VoteEvents](
+	[VoteEventId] [int] IDENTITY(1,1) NOT NULL,
+	[EventName] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_VoteEvents] PRIMARY KEY CLUSTERED 
+(
+	[VoteEventId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Votes](
+	[VoteId] [int] IDENTITY(1,1) NOT NULL,
+	[VoteEventId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[CandidateId] [int] NOT NULL,
+ CONSTRAINT [PK_Votes] PRIMARY KEY CLUSTERED 
+(
+	[VoteId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Candidates]  WITH CHECK ADD  CONSTRAINT [FK_Candidates_VoteEvent] FOREIGN KEY([VoteEventId])
+REFERENCES [dbo].[VoteEvents] ([VoteEventId])
+GO
+ALTER TABLE [dbo].[Candidates] CHECK CONSTRAINT [FK_Candidates_VoteEvent]
+GO
+ALTER TABLE [dbo].[Votes]  WITH CHECK ADD  CONSTRAINT [FK_tVoters_Users] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[Votes] CHECK CONSTRAINT [FK_tVoters_Users]
+GO
+ALTER TABLE [dbo].[Votes]  WITH CHECK ADD  CONSTRAINT [FK_Votes_Candidates] FOREIGN KEY([CandidateId])
+REFERENCES [dbo].[Candidates] ([CandidateId])
+GO
+ALTER TABLE [dbo].[Votes] CHECK CONSTRAINT [FK_Votes_Candidates]
+GO
+ALTER TABLE [dbo].[Votes]  WITH CHECK ADD  CONSTRAINT [FK_Votes_VoteEvents] FOREIGN KEY([VoteEventId])
+REFERENCES [dbo].[VoteEvents] ([VoteEventId])
+GO
+ALTER TABLE [dbo].[Votes] CHECK CONSTRAINT [FK_Votes_VoteEvents]
+GO
+USE [master]
+GO
+ALTER DATABASE [VotingSystemDB] SET  READ_WRITE 
+GO
