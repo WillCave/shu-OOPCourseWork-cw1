@@ -89,13 +89,6 @@ namespace OOPCourseWork
            
         }
 
-        //if the login button is clicken then the login panel will show and the register panel will be hidden
-        private void txtRLogin_Click(object sender, EventArgs e)
-        {
-            pnlLogin.Visible = true;
-            pnlRegister.Visible = false;
-        }
-
         private void ShowMainForm(User user)
         {
             //This will hide the login form and take the user to the main form where they can place their votes 
@@ -103,6 +96,20 @@ namespace OOPCourseWork
             frmMain Main = new frmMain(user);
             Main.Show();
             Visible = false;
+        }
+
+        //If the register label is clicked on the log in pannel then the Register pannel will show and log in will be hidden
+        private void lblLRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            pnlLogin.Visible = false;
+            pnlRegister.Visible = true;
+        }
+
+        //if the login label is clicken then the login panel will show and the register panel will be hidden
+        private void lblLLongin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            pnlLogin.Visible = true;
+            pnlRegister.Visible = false;
         }
     }
 }

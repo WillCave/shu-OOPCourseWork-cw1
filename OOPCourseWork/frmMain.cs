@@ -68,6 +68,8 @@ namespace OOPCourseWorkApp
         
         }
 
+        //Sets up the main form if the a voter is logged in, by getting rid of the admin and auditor pages.
+        // Also adds the first voting events and populates the candidates in the select candidate combobox
         private void SetUpVoteUser()
         {
             tabUserRole.TabPages.Remove(tabAdmin);
@@ -84,12 +86,18 @@ namespace OOPCourseWorkApp
                 cboVoteCandidate.Items.Add(candidate);
 
         }
+
+        //Sets up the admin user by getting rid of the voting and auditor tabs and also adds the add event button
+        //TODO: make the admin able to use the add event button.
         private void SetUpAdminUser()
         {
             tabUserRole.TabPages.Remove(tabVoter);
             tabUserRole.TabPages.Remove(tabAuditor);
             btnAddVoteEvent.Visible = true;
         }
+
+        //Sets up the auditor by removing the voting and admin tabs
+        //added grid to display the amount of votes for each candidate depending on what vote event in which you have decided to count votes for
         private void SetUpAuditorUser()
         {
             tabUserRole.TabPages.Remove(tabVoter);
@@ -104,6 +112,8 @@ namespace OOPCourseWorkApp
                 lstCandidates.Items.Add(candidateVote.ToString());
         }
 
+        //When this button is clicked it will check to see if the person logged in has already voted and if there is something in the voting combobox
+        //if they haven't voted and selected someone the system will log their vote into the database table
         private void btnVote_Click(object sender, EventArgs e)
         {
             VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
