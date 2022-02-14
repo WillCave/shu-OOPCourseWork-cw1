@@ -41,14 +41,14 @@ namespace OOPCourseWork
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.lblLRegister = new System.Windows.Forms.LinkLabel();
             this.pnlRegister = new System.Windows.Forms.Panel();
+            this.lblLLongin = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtRUser = new System.Windows.Forms.TextBox();
             this.txtRPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblLRegister = new System.Windows.Forms.LinkLabel();
-            this.lblLLongin = new System.Windows.Forms.LinkLabel();
             this.pnlLogin.SuspendLayout();
             this.pnlRegister.SuspendLayout();
             this.SuspendLayout();
@@ -143,6 +143,7 @@ namespace OOPCourseWork
             // 
             this.txtPassword.Location = new System.Drawing.Point(80, 103);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 23);
             this.txtPassword.TabIndex = 11;
             // 
@@ -159,6 +160,17 @@ namespace OOPCourseWork
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(274, 304);
             this.pnlLogin.TabIndex = 12;
+            // 
+            // lblLRegister
+            // 
+            this.lblLRegister.AutoSize = true;
+            this.lblLRegister.Location = new System.Drawing.Point(107, 186);
+            this.lblLRegister.Name = "lblLRegister";
+            this.lblLRegister.Size = new System.Drawing.Size(49, 15);
+            this.lblLRegister.TabIndex = 12;
+            this.lblLRegister.TabStop = true;
+            this.lblLRegister.Text = "Register";
+            this.lblLRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLRegister_LinkClicked);
             // 
             // pnlRegister
             // 
@@ -177,6 +189,17 @@ namespace OOPCourseWork
             this.pnlRegister.Name = "pnlRegister";
             this.pnlRegister.Size = new System.Drawing.Size(274, 304);
             this.pnlRegister.TabIndex = 13;
+            // 
+            // lblLLongin
+            // 
+            this.lblLLongin.AutoSize = true;
+            this.lblLLongin.Location = new System.Drawing.Point(121, 252);
+            this.lblLLongin.Name = "lblLLongin";
+            this.lblLLongin.Size = new System.Drawing.Size(40, 15);
+            this.lblLLongin.TabIndex = 14;
+            this.lblLLongin.TabStop = true;
+            this.lblLLongin.Text = "Log In";
+            this.lblLLongin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLLongin_LinkClicked);
             // 
             // label3
             // 
@@ -207,6 +230,7 @@ namespace OOPCourseWork
             // 
             this.txtRPassword.Location = new System.Drawing.Point(99, 114);
             this.txtRPassword.Name = "txtRPassword";
+            this.txtRPassword.PasswordChar = '*';
             this.txtRPassword.Size = new System.Drawing.Size(100, 23);
             this.txtRPassword.TabIndex = 10;
             // 
@@ -218,28 +242,6 @@ namespace OOPCourseWork
             this.label1.Size = new System.Drawing.Size(49, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Register";
-            // 
-            // lblLRegister
-            // 
-            this.lblLRegister.AutoSize = true;
-            this.lblLRegister.Location = new System.Drawing.Point(107, 186);
-            this.lblLRegister.Name = "lblLRegister";
-            this.lblLRegister.Size = new System.Drawing.Size(49, 15);
-            this.lblLRegister.TabIndex = 12;
-            this.lblLRegister.TabStop = true;
-            this.lblLRegister.Text = "Register";
-            this.lblLRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLRegister_LinkClicked);
-            // 
-            // lblLLongin
-            // 
-            this.lblLLongin.AutoSize = true;
-            this.lblLLongin.Location = new System.Drawing.Point(121, 252);
-            this.lblLLongin.Name = "lblLLongin";
-            this.lblLLongin.Size = new System.Drawing.Size(40, 15);
-            this.lblLLongin.TabIndex = 14;
-            this.lblLLongin.TabStop = true;
-            this.lblLLongin.Text = "Log In";
-            this.lblLLongin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLLongin_LinkClicked);
             // 
             // frmLogin
             // 

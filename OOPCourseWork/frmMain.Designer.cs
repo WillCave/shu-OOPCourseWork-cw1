@@ -142,7 +142,7 @@ namespace OOPCourseWorkApp
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(374, 12);
+            this.lblUserName.Location = new System.Drawing.Point(345, 15);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(38, 15);
             this.lblUserName.TabIndex = 1;
