@@ -41,6 +41,7 @@ namespace OOPCourseWorkApp
             this.lblUserName = new System.Windows.Forms.Label();
             this.cboVoteEvents = new System.Windows.Forms.ComboBox();
             this.btnAddVoteEvent = new System.Windows.Forms.Button();
+            this.lblLogOut = new System.Windows.Forms.LinkLabel();
             this.tabUserRole.SuspendLayout();
             this.tabVoter.SuspendLayout();
             this.tabAuditor.SuspendLayout();
@@ -164,11 +165,23 @@ namespace OOPCourseWorkApp
             this.btnAddVoteEvent.Text = "+";
             this.btnAddVoteEvent.UseVisualStyleBackColor = true;
             // 
+            // lblLogOut
+            // 
+            this.lblLogOut.AutoSize = true;
+            this.lblLogOut.Location = new System.Drawing.Point(437, 40);
+            this.lblLogOut.Name = "lblLogOut";
+            this.lblLogOut.Size = new System.Drawing.Size(50, 15);
+            this.lblLogOut.TabIndex = 4;
+            this.lblLogOut.TabStop = true;
+            this.lblLogOut.Text = "Log Out";
+            this.lblLogOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 287);
+            this.Controls.Add(this.lblLogOut);
             this.Controls.Add(this.btnAddVoteEvent);
             this.Controls.Add(this.cboVoteEvents);
             this.Controls.Add(this.lblUserName);
@@ -200,5 +213,6 @@ namespace OOPCourseWorkApp
         private System.Windows.Forms.ComboBox cboVoteCandidate;
         private System.Windows.Forms.ListView lstCandidates;
         private System.Windows.Forms.ColumnHeader colCandidateName;
+        private System.Windows.Forms.LinkLabel lblLogOut;
     }
 }

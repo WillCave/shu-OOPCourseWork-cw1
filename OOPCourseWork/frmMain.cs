@@ -136,5 +136,14 @@ namespace OOPCourseWorkApp
 
             cboVoteCandidate.SelectedItem = null ;
         }
+
+        //If Log out label clicked then it will take you back to the Login page
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmLogin Login = new frmLogin();
+            Login.Show();
+            Visible = false;
+             
+        }
     }
 }
