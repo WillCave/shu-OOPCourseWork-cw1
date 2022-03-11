@@ -17,7 +17,7 @@ namespace OOPCourseWorkAPI
         /// <param name="password"></param>
         /// <param name="userRole"></param>
         /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
+        /// <param name="lastName"></param>        
         /// <returns>The newly registered user or a error if can not register</returns>
         User RegisterUser(string userName, string password, UserRoleType userRole, string firstName, string lastName);
 

@@ -11,7 +11,10 @@ namespace OOPCourseWorkUnitTests
         [TestInitialize]
         public void TestInit()
         {
-            // Need to clean up Test Database user table between tests
+            // Need to clean up Test Database delete tables in order to not break forign key links           
+            DatabaseTestHelpers.DeleteTableContent("Votes");
+            DatabaseTestHelpers.DeleteTableContent("Candidates");
+            DatabaseTestHelpers.DeleteTableContent("VoteEvents");
             DatabaseTestHelpers.DeleteTableContent("Users");
         }
 
@@ -110,6 +113,6 @@ namespace OOPCourseWorkUnitTests
 
             //Check
             Assert.IsNull(user, "user should be null");
-        }
+        } 
     }
 }

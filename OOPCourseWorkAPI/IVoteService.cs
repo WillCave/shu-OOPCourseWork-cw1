@@ -41,6 +41,46 @@ namespace OOPCourseWorkAPI
         /// </summary>
         /// <param name="voteEventId"></param>
         /// <returns>Numbers of votes for each candidate</returns>
-        List<CandidateVotes> GetCandidateVotes(long voteEventId);        
+        List<CandidateVotes> GetCandidateVotes(long voteEventId);
+        
+        /// <summary>
+        /// Allows user to Cancel current vote and change it
+        /// </summary>
+        /// <param name="voteEventId"></param>
+        /// <param name="userId"></param>
+        /// <param name="candidateId"></param>
+        /// <returns>Returns true if revoked otherewise false</returns>
+        bool RevokeVote(long voteEventId, long userId);
+
+        /// <summary>
+        /// Creates a new event for users to vote on
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns>VoteEvent</returns>
+        VoteEvent CreateVoteEvent(string eventName);
+
+        /// <summary>
+        /// Allows admin to add candidates
+        /// </summary>
+        /// <param name="voteEventId"></param>
+        /// <param name="candidateName"></param>
+        /// <returns>Newly added candidate</returns>
+        Candidate AddCandidate(long voteEventId, string candidateName);
+
+        /// <summary>
+        /// Allows admin to delete a candidate with no votes
+        /// </summary>
+        /// <param name="voteEventId"></param>
+        /// <param name="candidateId"></param>
+        /// <returns>True if deleted otherwise false</returns>
+        bool DeleteCandidate(long voteEventId, long candidateId);
+
+        /// <summary>
+        /// Allows admin to check to see if candidate can be deleted
+        /// </summary>
+        /// <param name="voteEventId"></param>
+        /// <param name="candidateId"></param>
+        /// <returns>True if can delete otherwise false</returns>
+        bool CanDeleteCandidate(long voteEventId, long candidateId);
     }
 }

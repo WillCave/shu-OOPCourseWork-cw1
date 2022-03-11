@@ -8,7 +8,7 @@ using System.Text;
 
 namespace OOPCourseWorkAPI
 {
-    public class VoteService : IVoteService 
+    public class VoteService : IVoteService
     {
         private string _connectionString;
 
@@ -50,7 +50,7 @@ namespace OOPCourseWorkAPI
             if (CanVote(voteEventId, userId) == false)
                 throw new Exception("Already voted");
 
-            // Insert New User
+            // Insert New Vote
             using (var connection = new SqlConnection(_connectionString))
             {
                 var newVote = new Vote() { VoteEventId = voteEventId, UserId = userId, CandidateId = candidateId };
@@ -68,6 +68,61 @@ namespace OOPCourseWorkAPI
                 return connection.Query<CandidateVotes>($"SELECT c.CandidateName," +
                                                         $" (SELECT COUNT(*) FROM Votes WHERE VoteEventId = {voteEventId} AND CandidateId = c.CandidateId) AS NumberOfVotes " +
                                                         $"FROM Candidates c WHERE VoteEventId = {voteEventId}").ToList();
+            }
+        }
+
+        /// <inheritdoc/>
+        public bool RevokeVote(long voteEventId, long userId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                return connection.Execute($"DELETE FROM Votes WHERE VoteEventId = {voteEventId} AND UserId = {userId} ") >= 1;
+            }
+        }
+
+
+        /// <inheritdoc/>
+        public VoteEvent CreateVoteEvent(string eventName)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var newVoteEvent = new VoteEvent() { EventName = eventName };
+                connection.Insert(newVoteEvent);
+
+                return newVoteEvent;
+            }
+        }
+
+        /// <inheritdoc/>
+        public Candidate AddCandidate(long voteEventId, string candidateName)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var newCandidate = new Candidate() { VoteEventId = voteEventId, CandidateName = candidateName };
+                connection.Insert(newCandidate);
+
+                return newCandidate;
+            }
+        }
+
+        /// <inheritdoc/>
+        public bool DeleteCandidate(long voteEventId, long candidateId)
+        {
+            if(CanDeleteCandidate(voteEventId, candidateId) == false)    
+                return false;
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                return connection.Execute($"DELETE FROM Candidates WHERE VoteEventId = {voteEventId} AND CandidateId = {candidateId} ") >= 1;
+            }
+        }
+
+        /// <inheritdoc/>
+        public bool CanDeleteCandidate(long voteEventId, long candidateId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                return connection.Query($"SELECT * FROM Votes WHERE VoteEventId = {voteEventId} AND CandidateId = {candidateId}").ToList().Count == 0;
             }
         }
     }
