@@ -38,7 +38,7 @@ namespace OOPCourseWorkApp
             this.tabAdmin = new System.Windows.Forms.TabPage();
             this.btnAddCandidate = new System.Windows.Forms.Button();
             this.btnDeleteCandidate = new System.Windows.Forms.Button();
-            this.lstAddCandidates = new System.Windows.Forms.ListView();
+            this.lstAdminCandidates = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.tabAuditor = new System.Windows.Forms.TabPage();
             this.lstCandidates = new System.Windows.Forms.ListView();
@@ -121,7 +121,7 @@ namespace OOPCourseWorkApp
             // 
             this.tabAdmin.Controls.Add(this.btnAddCandidate);
             this.tabAdmin.Controls.Add(this.btnDeleteCandidate);
-            this.tabAdmin.Controls.Add(this.lstAddCandidates);
+            this.tabAdmin.Controls.Add(this.lstAdminCandidates);
             this.tabAdmin.Location = new System.Drawing.Point(4, 24);
             this.tabAdmin.Name = "tabAdmin";
             this.tabAdmin.Padding = new System.Windows.Forms.Padding(3);
@@ -148,17 +148,17 @@ namespace OOPCourseWorkApp
             this.btnDeleteCandidate.Text = "Delete";
             this.btnDeleteCandidate.UseVisualStyleBackColor = true;
             // 
-            // lstAddCandidates
+            // lstAdminCandidates
             // 
-            this.lstAddCandidates.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstAdminCandidates.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.lstAddCandidates.HideSelection = false;
-            this.lstAddCandidates.Location = new System.Drawing.Point(0, 3);
-            this.lstAddCandidates.Name = "lstAddCandidates";
-            this.lstAddCandidates.Size = new System.Drawing.Size(507, 184);
-            this.lstAddCandidates.TabIndex = 1;
-            this.lstAddCandidates.UseCompatibleStateImageBehavior = false;
-            this.lstAddCandidates.View = System.Windows.Forms.View.Details;
+            this.lstAdminCandidates.HideSelection = false;
+            this.lstAdminCandidates.Location = new System.Drawing.Point(0, 3);
+            this.lstAdminCandidates.Name = "lstAdminCandidates";
+            this.lstAdminCandidates.Size = new System.Drawing.Size(507, 184);
+            this.lstAdminCandidates.TabIndex = 1;
+            this.lstAdminCandidates.UseCompatibleStateImageBehavior = false;
+            this.lstAdminCandidates.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -211,6 +211,7 @@ namespace OOPCourseWorkApp
             this.cboVoteEvents.Name = "cboVoteEvents";
             this.cboVoteEvents.Size = new System.Drawing.Size(246, 23);
             this.cboVoteEvents.TabIndex = 2;
+            this.cboVoteEvents.SelectedIndexChanged += new System.EventHandler(this.cboVoteEvents_SelectedIndexChanged);
             // 
             // btnAddVoteEvent
             // 
@@ -273,7 +274,7 @@ namespace OOPCourseWorkApp
         private System.Windows.Forms.ColumnHeader colCandidateName;
         private System.Windows.Forms.LinkLabel lblLogOut;
         private System.Windows.Forms.Button btnRevokeVote;
-        private System.Windows.Forms.ListView lstAddCandidates;
+        private System.Windows.Forms.ListView lstAdminCandidates;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnAddCandidate;
         private System.Windows.Forms.Button btnDeleteCandidate;

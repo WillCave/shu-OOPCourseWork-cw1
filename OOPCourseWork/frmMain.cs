@@ -17,7 +17,8 @@ namespace OOPCourseWorkApp
         
         private User _user;
         private IVoteService _voteService;
-        
+        private VoteEvent _currentVoteEvent;
+        private List<Candidate> _currentCandidates;        
 
         /// <summary>
         ///  Create the main form wuth the user
@@ -78,8 +79,34 @@ namespace OOPCourseWorkApp
                 cboVoteEvents.SelectedIndex = 0;
         }
 
-        //Sets up the main form if the a voter is logged in, by getting rid of the admin and auditor pages.
-        // Also adds the first voting events and populates the candidates in the select candidate combobox
+        /// <summary>
+        /// inits candidates
+        /// </summary>
+        private void initCandidates()
+        {
+            //Get the candidates for specific vote event            
+            _currentCandidates = _voteService.GetCandidates(_currentVoteEvent.VoteEventId);
+
+            //add the vote event candidates
+            cboVoteCandidate.Items.Clear();
+            foreach (var candidate in _currentCandidates)
+                cboVoteCandidate.Items.Add(candidate);
+
+            //init candidate votes for auditor
+            lstCandidates.Items.Clear();
+            List<CandidateVotes> candidateVotes = _voteService.GetCandidateVotes(_currentVoteEvent.VoteEventId);
+            foreach (var candidateVote in candidateVotes)
+                lstCandidates.Items.Add(candidateVote.ToString());
+
+            //init candidates for admin
+           lstAdminCandidates.Items.Clear();
+            foreach (var candidate in _currentCandidates)
+                lstAdminCandidates.Items.Add(candidate.ToString());
+        }
+
+        /// <summary>
+        /// sets up voting user
+        /// </summary>
         private void SetUpVoteUser()
         {
             tabUserRole.TabPages.Remove(tabAdmin);
@@ -89,16 +116,12 @@ namespace OOPCourseWorkApp
             if (cboVoteEvents.SelectedItem == null)
                 return;
 
-            VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
-            var candidates = _voteService.GetCandidates(voteEvent.VoteEventId);
-
-            foreach (var candidate in candidates)
-                cboVoteCandidate.Items.Add(candidate);
-
+            initCandidates();
         }
 
-        //Sets up the admin user by getting rid of the voting and auditor tabs and also adds the add event button
-        //TODO: make the admin able to use the add event button.
+        /// <summary>
+        /// sets up admin user
+        /// </summary>
         private void SetUpAdminUser()
         {
             tabUserRole.TabPages.Remove(tabVoter);
@@ -108,24 +131,23 @@ namespace OOPCourseWorkApp
             List<CandidateVotes> candidateVotes = _voteService.GetCandidateVotes(voteEvent.VoteEventId);
         }
 
-        //Sets up the auditor by removing the voting and admin tabs
-        //added grid to display the amount of votes for each candidate depending on what vote event in which you have decided to count votes for
+        /// <summary>
+        /// sets up aditor user
+        /// </summary>
         private void SetUpAuditorUser()
         {
             tabUserRole.TabPages.Remove(tabVoter);
             tabUserRole.TabPages.Remove(tabAdmin);
             btnAddVoteEvent.Visible = false;
 
-            //Get the votes for each candidate for the vote event
-            VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
-            List<CandidateVotes> candidateVotes = _voteService.GetCandidateVotes(voteEvent.VoteEventId);
-            
-            foreach (var candidateVote in candidateVotes)
-                lstCandidates.Items.Add(candidateVote.ToString());
+            initCandidates();
         }
 
-        //When this button is clicked it will check to see if the person logged in has already voted and if there is something in the voting combobox
-        //if they haven't voted and selected someone the system will log their vote into the database table
+        /// <summary>
+        /// Called when user wants to vote
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVote_Click(object sender, EventArgs e)
         {
             VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
@@ -149,7 +171,11 @@ namespace OOPCourseWorkApp
             cboVoteCandidate.SelectedItem = null ;
         }
 
-        //If Log out label clicked then it will take you back to the Login page
+       /// <summary>
+       /// Called when user wants to log out
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmLogin Login = new frmLogin();
@@ -158,7 +184,11 @@ namespace OOPCourseWorkApp
              
         }
 
-        //This will make it so a user who has already voted 
+        /// <summary>
+        /// Called when revoke vote is called
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRevokeVote_Click(object sender, EventArgs e)
         {
             VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
@@ -172,6 +202,25 @@ namespace OOPCourseWorkApp
             MessageBox.Show("Vote successfully cancelled");
         }
 
+        /// <summary>
+        /// Called when vote events is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboVoteEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Store the current vote event
+            _currentVoteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
+
+            //Init new candidates for the changed vote event
+            initCandidates();
+        }
+
+        /// <summary>
+        /// called when add vote event is called
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddVoteEvent_Click(object sender, EventArgs e)
         {
             //Add vote event form
