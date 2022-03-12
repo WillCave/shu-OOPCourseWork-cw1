@@ -234,7 +234,7 @@ namespace OOPCourseWorkApp
         private void btnAddCandidate_Click(object sender, EventArgs e)
         {
             //Add candidates form
-            frmAddCandidates addCandidates = new frmAddCandidates(_voteService, _currentVoteEvent);
+            frmAddCandidates addCandidates = new frmAddCandidates(_voteService, _currentVoteEvent, _currentCandidates);
             addCandidates.ShowDialog();
 
             //Refresh Candidates list
