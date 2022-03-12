@@ -183,7 +183,35 @@ namespace OOPCourseWorkUnitTests
             Assert.AreEqual(_defaultVoteEvent.VoteEventId, result.VoteEventId);
             Assert.AreEqual(_defaultUser.UserId, result.UserId);
             Assert.AreEqual(_defaultCandidate.CandidateId, result.CandidateId);
-        } 
+        }
+
+
+        [TestMethod]
+        public void GetVoteFoundTest()
+        {
+            //Set Up          
+            var vote =_voteService.LogVote(_defaultVoteEvent.VoteEventId, _defaultUser.UserId, _defaultCandidate.CandidateId);
+
+            //Test                  
+            var result = _voteService.GetVote(_defaultVoteEvent.VoteEventId, _defaultUser.UserId);
+
+            //check
+            Assert.IsNotNull(result);
+            Assert.AreEqual(vote.VoteId, result.VoteId);
+        }
+        [TestMethod]
+        public void GetVoteNotFoundTest()
+        {
+            //Set Up
+            //Nothing as no vote for the defult user
+
+            //Test                  
+            var result = _voteService.GetVote(_defaultVoteEvent.VoteEventId, _defaultUser.UserId);
+
+            //check
+            Assert.IsNull(result);
+        }
+
 
         [TestMethod]
         public void CanVoteShouldBeFalseTest()

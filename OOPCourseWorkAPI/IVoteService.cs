@@ -37,6 +37,14 @@ namespace OOPCourseWorkAPI
         Vote LogVote(long voteEventId, long userId, long candidateId);
 
         /// <summary>
+        /// Gets the person the user has voted for
+        /// </summary>
+        /// <param name="voteEventId"></param>
+        /// <param name="userId"></param>
+        /// <returns>Vote if found or null</returns>
+        Vote GetVote(long voteEventId, long userId);
+
+        /// <summary>
         /// Getting Candidate votes for vote event
         /// </summary>
         /// <param name="voteEventId"></param>

@@ -31,10 +31,7 @@ namespace OOPCourseWorkApp
         {
             this.tabUserRole = new System.Windows.Forms.TabControl();
             this.tabVoter = new System.Windows.Forms.TabPage();
-            this.btnRevokeVote = new System.Windows.Forms.Button();
-            this.btnVote = new System.Windows.Forms.Button();
-            this.lblCandidates = new System.Windows.Forms.Label();
-            this.cboVoteCandidate = new System.Windows.Forms.ComboBox();
+            this.ctlVoteControl = new OOPCourseWorkApp.VoteControl();
             this.tabAdmin = new System.Windows.Forms.TabPage();
             this.btnAddCandidate = new System.Windows.Forms.Button();
             this.btnDeleteCandidate = new System.Windows.Forms.Button();
@@ -66,10 +63,7 @@ namespace OOPCourseWorkApp
             // 
             // tabVoter
             // 
-            this.tabVoter.Controls.Add(this.btnRevokeVote);
-            this.tabVoter.Controls.Add(this.btnVote);
-            this.tabVoter.Controls.Add(this.lblCandidates);
-            this.tabVoter.Controls.Add(this.cboVoteCandidate);
+            this.tabVoter.Controls.Add(this.ctlVoteControl);
             this.tabVoter.Location = new System.Drawing.Point(4, 24);
             this.tabVoter.Name = "tabVoter";
             this.tabVoter.Padding = new System.Windows.Forms.Padding(3);
@@ -78,44 +72,12 @@ namespace OOPCourseWorkApp
             this.tabVoter.Text = "Voter";
             this.tabVoter.UseVisualStyleBackColor = true;
             // 
-            // btnRevokeVote
+            // ctlVoteControl
             // 
-            this.btnRevokeVote.Location = new System.Drawing.Point(179, 116);
-            this.btnRevokeVote.Name = "btnRevokeVote";
-            this.btnRevokeVote.Size = new System.Drawing.Size(90, 34);
-            this.btnRevokeVote.TabIndex = 3;
-            this.btnRevokeVote.Text = "Revoke Vote";
-            this.btnRevokeVote.UseVisualStyleBackColor = true;
-            this.btnRevokeVote.Click += new System.EventHandler(this.btnRevokeVote_Click);
-            // 
-            // btnVote
-            // 
-            this.btnVote.Location = new System.Drawing.Point(124, 50);
-            this.btnVote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnVote.Name = "btnVote";
-            this.btnVote.Size = new System.Drawing.Size(206, 47);
-            this.btnVote.TabIndex = 2;
-            this.btnVote.Text = "Vote";
-            this.btnVote.UseVisualStyleBackColor = true;
-            this.btnVote.Click += new System.EventHandler(this.btnVote_Click);
-            // 
-            // lblCandidates
-            // 
-            this.lblCandidates.AutoSize = true;
-            this.lblCandidates.Location = new System.Drawing.Point(13, 15);
-            this.lblCandidates.Name = "lblCandidates";
-            this.lblCandidates.Size = new System.Drawing.Size(95, 15);
-            this.lblCandidates.TabIndex = 1;
-            this.lblCandidates.Text = "Select Candidate";
-            // 
-            // cboVoteCandidate
-            // 
-            this.cboVoteCandidate.FormattingEnabled = true;
-            this.cboVoteCandidate.Location = new System.Drawing.Point(124, 15);
-            this.cboVoteCandidate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboVoteCandidate.Name = "cboVoteCandidate";
-            this.cboVoteCandidate.Size = new System.Drawing.Size(206, 23);
-            this.cboVoteCandidate.TabIndex = 0;
+            this.ctlVoteControl.Location = new System.Drawing.Point(4, 7);
+            this.ctlVoteControl.Name = "ctlVoteControl";
+            this.ctlVoteControl.Size = new System.Drawing.Size(444, 218);
+            this.ctlVoteControl.TabIndex = 0;
             // 
             // tabAdmin
             // 
@@ -253,7 +215,6 @@ namespace OOPCourseWorkApp
             this.Text = "Voting System";
             this.tabUserRole.ResumeLayout(false);
             this.tabVoter.ResumeLayout(false);
-            this.tabVoter.PerformLayout();
             this.tabAdmin.ResumeLayout(false);
             this.tabAuditor.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -270,16 +231,13 @@ namespace OOPCourseWorkApp
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.ComboBox cboVoteEvents;
         private System.Windows.Forms.Button btnAddVoteEvent;
-        private System.Windows.Forms.Button btnVote;
-        private System.Windows.Forms.Label lblCandidates;
-        private System.Windows.Forms.ComboBox cboVoteCandidate;
         private System.Windows.Forms.ListView lstCandidates;
         private System.Windows.Forms.ColumnHeader colCandidateName;
         private System.Windows.Forms.LinkLabel lblLogOut;
-        private System.Windows.Forms.Button btnRevokeVote;
         private System.Windows.Forms.ListView lstAdminCandidates;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnAddCandidate;
         private System.Windows.Forms.Button btnDeleteCandidate;
+        private VoteControl ctlVoteControl;
     }
 }

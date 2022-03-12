@@ -61,6 +61,15 @@ namespace OOPCourseWorkAPI
         }
 
         /// <inheritdoc/>
+        public Vote GetVote(long voteEventId, long userId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                return connection.Query<Vote>($"SELECT * FROM Votes WHERE VoteEventId = {voteEventId} AND UserId = {userId}").FirstOrDefault();
+            }
+        }
+
+        /// <inheritdoc/>
         public List<CandidateVotes> GetCandidateVotes(long voteEventId)
         {
             using (var connection = new SqlConnection(_connectionString))

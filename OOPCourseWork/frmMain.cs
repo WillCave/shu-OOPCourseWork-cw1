@@ -88,11 +88,6 @@ namespace OOPCourseWorkApp
             //Get the candidates for specific vote event            
             _currentCandidates = _voteService.GetCandidates(_currentVoteEvent.VoteEventId);
 
-            //add the vote event candidates
-            cboVoteCandidate.Items.Clear();
-            foreach (var candidate in _currentCandidates)
-                cboVoteCandidate.Items.Add(candidate);
-
             //init candidate votes for auditor
             lstCandidates.Items.Clear();
             List<CandidateVotes> candidateVotes = _voteService.GetCandidateVotes(_currentVoteEvent.VoteEventId);
@@ -103,6 +98,9 @@ namespace OOPCourseWorkApp
            lstAdminCandidates.Items.Clear();
             foreach (var candidate in _currentCandidates)
                 lstAdminCandidates.Items.Add(candidate.ToString());
+
+            //init the vote control for voters
+            ctlVoteControl.Init(_voteService, _currentVoteEvent, _user.UserId, _currentCandidates);
         }
 
         /// <summary>
@@ -117,7 +115,7 @@ namespace OOPCourseWorkApp
             if (cboVoteEvents.SelectedItem == null)
                 return;
 
-            initCandidates();
+            initCandidates();           
         }
 
         /// <summary>
@@ -144,34 +142,6 @@ namespace OOPCourseWorkApp
             initCandidates();
         }
 
-        /// <summary>
-        /// Called when user wants to vote
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnVote_Click(object sender, EventArgs e)
-        {
-            VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
-            if (_voteService.CanVote(voteEvent.VoteEventId, _user.UserId) == false)
-            {
-                MessageBox.Show("Already Voted");
-                return;
-            }
-
-            if (cboVoteCandidate.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a candidate");
-                return;
-            }
-
-            Candidate candidate = (Candidate)cboVoteCandidate.SelectedItem;
-            _voteService.LogVote(voteEvent.VoteEventId, _user.UserId, candidate.CandidateId);
-
-            MessageBox.Show("Thank you for Voting");
-
-            cboVoteCandidate.SelectedItem = null ;
-        }
-
        /// <summary>
        /// Called when user wants to log out
        /// </summary>
@@ -183,24 +153,6 @@ namespace OOPCourseWorkApp
             Login.Show();
             Visible = false;
              
-        }
-
-        /// <summary>
-        /// Called when revoke vote is called
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnRevokeVote_Click(object sender, EventArgs e)
-        {
-            VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
-            if (_voteService.CanVote(voteEvent.VoteEventId, _user.UserId) == true)
-            {
-                MessageBox.Show("You have not Voted for anybody yet.");
-                return;
-            }
-
-            _voteService.RevokeVote(voteEvent.VoteEventId, _user.UserId);
-            MessageBox.Show("Vote successfully cancelled");
         }
 
         /// <summary>
