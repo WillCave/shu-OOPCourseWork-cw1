@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using OOPCourseWorkApp;
 using OOPCourseWorkAPI;
 using OOPCourseWork;
+using System.Linq;
 
 namespace OOPCourseWorkApp
 {
@@ -231,6 +232,11 @@ namespace OOPCourseWorkApp
             initVoteEvents();
         }
 
+        /// <summary>
+        /// Called when Adding candidate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddCandidate_Click(object sender, EventArgs e)
         {
             //Add candidates form
@@ -239,6 +245,50 @@ namespace OOPCourseWorkApp
 
             //Refresh Candidates list
             initCandidates();
+        }
+
+        /// <summary>
+        /// Clled when deleting candidate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteCandidate_Click(object sender, EventArgs e)
+        {
+            //Find the candidate name selected
+            var candidateName = lstAdminCandidates.SelectedItems.Count > 0 ? lstAdminCandidates.SelectedItems[0].Text : null;
+            if(candidateName == null)
+            {
+                MessageBox.Show("Please select a candidate to delete");
+                return;
+            }
+
+            //Get the candidate object from the name
+            var candidate = _currentCandidates.Where(c => c.CandidateName == candidateName).FirstOrDefault();
+            if(candidate == null)
+            {
+                MessageBox.Show("Could not find candidate to delete");
+                return;
+            }
+
+            //check if we can delete
+            if(_voteService.CanDeleteCandidate(_currentVoteEvent.VoteEventId, candidate.CandidateId) == false)
+            {
+                MessageBox.Show("Candidate has exising votes. Can not delete");
+                return;
+            }
+
+            //Delete Candidate
+            if (_voteService.DeleteCandidate(_currentVoteEvent.VoteEventId, candidate.CandidateId) == true)
+            {
+                MessageBox.Show("Deleted candidate");
+                initCandidates();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Failed to delete candidate");
+                return;
+            }
         }
     }
 }

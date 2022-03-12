@@ -148,6 +148,7 @@ namespace OOPCourseWorkApp
             this.btnDeleteCandidate.TabIndex = 2;
             this.btnDeleteCandidate.Text = "Delete";
             this.btnDeleteCandidate.UseVisualStyleBackColor = true;
+            this.btnDeleteCandidate.Click += new System.EventHandler(this.btnDeleteCandidate_Click);
             // 
             // lstAdminCandidates
             // 
@@ -155,6 +156,7 @@ namespace OOPCourseWorkApp
             this.columnHeader1});
             this.lstAdminCandidates.HideSelection = false;
             this.lstAdminCandidates.Location = new System.Drawing.Point(0, 3);
+            this.lstAdminCandidates.MultiSelect = false;
             this.lstAdminCandidates.Name = "lstAdminCandidates";
             this.lstAdminCandidates.Size = new System.Drawing.Size(507, 184);
             this.lstAdminCandidates.TabIndex = 1;
