@@ -17,7 +17,7 @@ namespace OOPCourseWorkApp
         
         private User _user;
         private IVoteService _voteService;
-
+        
 
         /// <summary>
         ///  Create the main form wuth the user
@@ -42,12 +42,7 @@ namespace OOPCourseWorkApp
         {
 
             //Sets up the vote events
-            var voteEvents = _voteService.GetVoteEvents();
-            foreach (var voteEvent in voteEvents)
-                cboVoteEvents.Items.Add(voteEvent);
-
-            if (voteEvents.Count > 0)
-                cboVoteEvents.SelectedIndex = 0;
+            initVoteEvents();
 
             // Authorize the views of the main form based on the user role
             if ( _user.UserRole == UserRoleType.Admin)
@@ -63,9 +58,24 @@ namespace OOPCourseWorkApp
                 SetUpAuditorUser();
             }
 
-            lblUserName.Text = $"Welcome {_user.FirstName} {_user.LastName}";
+            lblUserName.Text = $"Welcome {_user.FirstName} {_user.LastName}";        
+        }
 
-        
+        /// <summary>
+        /// Init vote events
+        /// </summary>
+        protected void initVoteEvents()
+        {
+            //Clears any previous items
+            cboVoteEvents.Items.Clear();
+
+            //Sets up the vote events
+            var voteEvents = _voteService.GetVoteEvents();
+            foreach (var voteEvent in voteEvents)
+                cboVoteEvents.Items.Add(voteEvent);
+
+            if (voteEvents.Count > 0)
+                cboVoteEvents.SelectedIndex = 0;
         }
 
         //Sets up the main form if the a voter is logged in, by getting rid of the admin and auditor pages.
@@ -94,6 +104,8 @@ namespace OOPCourseWorkApp
             tabUserRole.TabPages.Remove(tabVoter);
             tabUserRole.TabPages.Remove(tabAuditor);
             btnAddVoteEvent.Visible = true;
+            VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
+            List<CandidateVotes> candidateVotes = _voteService.GetCandidateVotes(voteEvent.VoteEventId);
         }
 
         //Sets up the auditor by removing the voting and admin tabs
@@ -144,6 +156,30 @@ namespace OOPCourseWorkApp
             Login.Show();
             Visible = false;
              
+        }
+
+        //This will make it so a user who has already voted 
+        private void btnRevokeVote_Click(object sender, EventArgs e)
+        {
+            VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
+            if (_voteService.CanVote(voteEvent.VoteEventId, _user.UserId) == true)
+            {
+                MessageBox.Show("You have not Voted for anybody yet.");
+                return;
+            }
+
+            _voteService.RevokeVote(voteEvent.VoteEventId, _user.UserId);
+            MessageBox.Show("Vote successfully cancelled");
+        }
+
+        private void btnAddVoteEvent_Click(object sender, EventArgs e)
+        {
+            //Add vote event form
+            frmVoteEvent VoteEvent = new frmVoteEvent(_voteService);
+            VoteEvent.ShowDialog();
+
+            //Refeshing vote events
+            initVoteEvents();
         }
     }
 }

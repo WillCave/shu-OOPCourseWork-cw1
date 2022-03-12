@@ -250,6 +250,7 @@ namespace OOPCourseWork
             this.ClientSize = new System.Drawing.Size(292, 330);
             this.Controls.Add(this.pnlRegister);
             this.Controls.Add(this.pnlLogin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmLogin";
             this.Text = "VotingSystem";
             this.pnlLogin.ResumeLayout(false);

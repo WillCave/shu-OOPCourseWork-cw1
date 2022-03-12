@@ -31,10 +31,15 @@ namespace OOPCourseWorkApp
         {
             this.tabUserRole = new System.Windows.Forms.TabControl();
             this.tabVoter = new System.Windows.Forms.TabPage();
+            this.btnRevokeVote = new System.Windows.Forms.Button();
             this.btnVote = new System.Windows.Forms.Button();
             this.lblCandidates = new System.Windows.Forms.Label();
             this.cboVoteCandidate = new System.Windows.Forms.ComboBox();
             this.tabAdmin = new System.Windows.Forms.TabPage();
+            this.btnAddCandidate = new System.Windows.Forms.Button();
+            this.btnDeleteCandidate = new System.Windows.Forms.Button();
+            this.lstAddCandidates = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.tabAuditor = new System.Windows.Forms.TabPage();
             this.lstCandidates = new System.Windows.Forms.ListView();
             this.colCandidateName = new System.Windows.Forms.ColumnHeader();
@@ -44,6 +49,7 @@ namespace OOPCourseWorkApp
             this.lblLogOut = new System.Windows.Forms.LinkLabel();
             this.tabUserRole.SuspendLayout();
             this.tabVoter.SuspendLayout();
+            this.tabAdmin.SuspendLayout();
             this.tabAuditor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,21 +61,32 @@ namespace OOPCourseWorkApp
             this.tabUserRole.Location = new System.Drawing.Point(10, 40);
             this.tabUserRole.Name = "tabUserRole";
             this.tabUserRole.SelectedIndex = 0;
-            this.tabUserRole.Size = new System.Drawing.Size(491, 238);
+            this.tabUserRole.Size = new System.Drawing.Size(521, 259);
             this.tabUserRole.TabIndex = 0;
             // 
             // tabVoter
             // 
+            this.tabVoter.Controls.Add(this.btnRevokeVote);
             this.tabVoter.Controls.Add(this.btnVote);
             this.tabVoter.Controls.Add(this.lblCandidates);
             this.tabVoter.Controls.Add(this.cboVoteCandidate);
             this.tabVoter.Location = new System.Drawing.Point(4, 24);
             this.tabVoter.Name = "tabVoter";
             this.tabVoter.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVoter.Size = new System.Drawing.Size(483, 210);
+            this.tabVoter.Size = new System.Drawing.Size(513, 231);
             this.tabVoter.TabIndex = 0;
             this.tabVoter.Text = "Voter";
             this.tabVoter.UseVisualStyleBackColor = true;
+            // 
+            // btnRevokeVote
+            // 
+            this.btnRevokeVote.Location = new System.Drawing.Point(179, 116);
+            this.btnRevokeVote.Name = "btnRevokeVote";
+            this.btnRevokeVote.Size = new System.Drawing.Size(90, 34);
+            this.btnRevokeVote.TabIndex = 3;
+            this.btnRevokeVote.Text = "Revoke Vote";
+            this.btnRevokeVote.UseVisualStyleBackColor = true;
+            this.btnRevokeVote.Click += new System.EventHandler(this.btnRevokeVote_Click);
             // 
             // btnVote
             // 
@@ -102,13 +119,52 @@ namespace OOPCourseWorkApp
             // 
             // tabAdmin
             // 
+            this.tabAdmin.Controls.Add(this.btnAddCandidate);
+            this.tabAdmin.Controls.Add(this.btnDeleteCandidate);
+            this.tabAdmin.Controls.Add(this.lstAddCandidates);
             this.tabAdmin.Location = new System.Drawing.Point(4, 24);
             this.tabAdmin.Name = "tabAdmin";
             this.tabAdmin.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAdmin.Size = new System.Drawing.Size(483, 210);
+            this.tabAdmin.Size = new System.Drawing.Size(513, 231);
             this.tabAdmin.TabIndex = 1;
             this.tabAdmin.Text = "Admin";
             this.tabAdmin.UseVisualStyleBackColor = true;
+            // 
+            // btnAddCandidate
+            // 
+            this.btnAddCandidate.Location = new System.Drawing.Point(426, 193);
+            this.btnAddCandidate.Name = "btnAddCandidate";
+            this.btnAddCandidate.Size = new System.Drawing.Size(81, 23);
+            this.btnAddCandidate.TabIndex = 3;
+            this.btnAddCandidate.Text = "Add";
+            this.btnAddCandidate.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteCandidate
+            // 
+            this.btnDeleteCandidate.Location = new System.Drawing.Point(350, 193);
+            this.btnDeleteCandidate.Name = "btnDeleteCandidate";
+            this.btnDeleteCandidate.Size = new System.Drawing.Size(70, 23);
+            this.btnDeleteCandidate.TabIndex = 2;
+            this.btnDeleteCandidate.Text = "Delete";
+            this.btnDeleteCandidate.UseVisualStyleBackColor = true;
+            // 
+            // lstAddCandidates
+            // 
+            this.lstAddCandidates.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lstAddCandidates.HideSelection = false;
+            this.lstAddCandidates.Location = new System.Drawing.Point(0, 3);
+            this.lstAddCandidates.Name = "lstAddCandidates";
+            this.lstAddCandidates.Size = new System.Drawing.Size(507, 184);
+            this.lstAddCandidates.TabIndex = 1;
+            this.lstAddCandidates.UseCompatibleStateImageBehavior = false;
+            this.lstAddCandidates.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Tag = "CandidateName";
+            this.columnHeader1.Text = "Candidate";
+            this.columnHeader1.Width = 200;
             // 
             // tabAuditor
             // 
@@ -116,7 +172,7 @@ namespace OOPCourseWorkApp
             this.tabAuditor.Location = new System.Drawing.Point(4, 24);
             this.tabAuditor.Name = "tabAuditor";
             this.tabAuditor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAuditor.Size = new System.Drawing.Size(483, 210);
+            this.tabAuditor.Size = new System.Drawing.Size(513, 231);
             this.tabAuditor.TabIndex = 2;
             this.tabAuditor.Text = "Auditor";
             this.tabAuditor.UseVisualStyleBackColor = true;
@@ -128,7 +184,7 @@ namespace OOPCourseWorkApp
             this.lstCandidates.HideSelection = false;
             this.lstCandidates.Location = new System.Drawing.Point(3, 6);
             this.lstCandidates.Name = "lstCandidates";
-            this.lstCandidates.Size = new System.Drawing.Size(474, 198);
+            this.lstCandidates.Size = new System.Drawing.Size(504, 198);
             this.lstCandidates.TabIndex = 0;
             this.lstCandidates.UseCompatibleStateImageBehavior = false;
             this.lstCandidates.View = System.Windows.Forms.View.Details;
@@ -142,7 +198,7 @@ namespace OOPCourseWorkApp
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(345, 15);
+            this.lblUserName.Location = new System.Drawing.Point(417, 18);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(38, 15);
             this.lblUserName.TabIndex = 1;
@@ -164,11 +220,12 @@ namespace OOPCourseWorkApp
             this.btnAddVoteEvent.TabIndex = 3;
             this.btnAddVoteEvent.Text = "+";
             this.btnAddVoteEvent.UseVisualStyleBackColor = true;
+            this.btnAddVoteEvent.Click += new System.EventHandler(this.btnAddVoteEvent_Click);
             // 
             // lblLogOut
             // 
             this.lblLogOut.AutoSize = true;
-            this.lblLogOut.Location = new System.Drawing.Point(437, 40);
+            this.lblLogOut.Location = new System.Drawing.Point(476, 40);
             this.lblLogOut.Name = "lblLogOut";
             this.lblLogOut.Size = new System.Drawing.Size(50, 15);
             this.lblLogOut.TabIndex = 4;
@@ -180,7 +237,7 @@ namespace OOPCourseWorkApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 287);
+            this.ClientSize = new System.Drawing.Size(543, 311);
             this.Controls.Add(this.lblLogOut);
             this.Controls.Add(this.btnAddVoteEvent);
             this.Controls.Add(this.cboVoteEvents);
@@ -193,6 +250,7 @@ namespace OOPCourseWorkApp
             this.tabUserRole.ResumeLayout(false);
             this.tabVoter.ResumeLayout(false);
             this.tabVoter.PerformLayout();
+            this.tabAdmin.ResumeLayout(false);
             this.tabAuditor.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -214,5 +272,10 @@ namespace OOPCourseWorkApp
         private System.Windows.Forms.ListView lstCandidates;
         private System.Windows.Forms.ColumnHeader colCandidateName;
         private System.Windows.Forms.LinkLabel lblLogOut;
+        private System.Windows.Forms.Button btnRevokeVote;
+        private System.Windows.Forms.ListView lstAddCandidates;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button btnAddCandidate;
+        private System.Windows.Forms.Button btnDeleteCandidate;
     }
 }
