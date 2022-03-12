@@ -138,6 +138,7 @@ namespace OOPCourseWorkApp
             this.btnAddCandidate.TabIndex = 3;
             this.btnAddCandidate.Text = "Add";
             this.btnAddCandidate.UseVisualStyleBackColor = true;
+            this.btnAddCandidate.Click += new System.EventHandler(this.btnAddCandidate_Click);
             // 
             // btnDeleteCandidate
             // 

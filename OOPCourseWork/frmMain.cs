@@ -230,5 +230,15 @@ namespace OOPCourseWorkApp
             //Refeshing vote events
             initVoteEvents();
         }
+
+        private void btnAddCandidate_Click(object sender, EventArgs e)
+        {
+            //Add candidates form
+            frmAddCandidates addCandidates = new frmAddCandidates(_voteService, _currentVoteEvent);
+            addCandidates.ShowDialog();
+
+            //Refresh Candidates list
+            initCandidates();
+        }
     }
 }

@@ -14,4 +14,16 @@
     <ProjectReference Include="..\OOPCourseWorkAPI\OOPCourseWorkAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="frmVoteEvent - Copy.Designer.cs">
+      <DependentUpon>frmVoteEvent.Designer.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="frmVoteEvent - Copy.resx">
+      <DependentUpon>frmVoteEvent.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
