@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using Microsoft.Data.SqlClient;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public List<VoteEvent> GetVoteEvents()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query<VoteEvent>($"SELECT * FROM VoteEvents").ToList();
             }
@@ -29,7 +29,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public List<Candidate> GetCandidates(long voteEventId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query<Candidate>($"SELECT * FROM Candidates WHERE VoteEventId = {voteEventId}").ToList();
             }
@@ -38,7 +38,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public bool CanVote(long voteEventId, long userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query($"SELECT * FROM Votes WHERE VoteEventId = {voteEventId} AND UserId = {userId}").ToList().Count == 0;
             }
@@ -51,7 +51,7 @@ namespace OOPCourseWorkAPI
                 throw new Exception("Already voted");
 
             // Insert New Vote
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 var newVote = new Vote() { VoteEventId = voteEventId, UserId = userId, CandidateId = candidateId };
                 connection.Insert(newVote);
@@ -63,7 +63,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public Vote GetVote(long voteEventId, long userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query<Vote>($"SELECT * FROM Votes WHERE VoteEventId = {voteEventId} AND UserId = {userId}").FirstOrDefault();
             }
@@ -72,7 +72,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public List<CandidateVotes> GetCandidateVotes(long voteEventId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query<CandidateVotes>($"SELECT c.CandidateName," +
                                                         $" (SELECT COUNT(*) FROM Votes WHERE VoteEventId = {voteEventId} AND CandidateId = c.CandidateId) AS NumberOfVotes " +
@@ -83,7 +83,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public bool RevokeVote(long voteEventId, long userId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Execute($"DELETE FROM Votes WHERE VoteEventId = {voteEventId} AND UserId = {userId} ") >= 1;
             }
@@ -93,7 +93,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public VoteEvent CreateVoteEvent(string eventName)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 var newVoteEvent = new VoteEvent() { EventName = eventName };
                 connection.Insert(newVoteEvent);
@@ -105,7 +105,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public Candidate AddCandidate(long voteEventId, string candidateName)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 var newCandidate = new Candidate() { VoteEventId = voteEventId, CandidateName = candidateName };
                 connection.Insert(newCandidate);
@@ -120,7 +120,7 @@ namespace OOPCourseWorkAPI
             if(CanDeleteCandidate(voteEventId, candidateId) == false)    
                 return false;
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Execute($"DELETE FROM Candidates WHERE VoteEventId = {voteEventId} AND CandidateId = {candidateId} ") >= 1;
             }
@@ -129,7 +129,7 @@ namespace OOPCourseWorkAPI
         /// <inheritdoc/>
         public bool CanDeleteCandidate(long voteEventId, long candidateId)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query($"SELECT * FROM Votes WHERE VoteEventId = {voteEventId} AND CandidateId = {candidateId}").ToList().Count == 0;
             }

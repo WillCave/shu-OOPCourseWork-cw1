@@ -22,8 +22,8 @@ namespace OOPCourseWork
             _userService = new UserService(Program.DBConnectionString);
 
             InitializeComponent();
-            pnlLogin.Visible = false;        
-            
+            pnlLogin.Visible = true;
+            pnlRegister.Visible = false;
         }
         
         private void btnRegister_Click(object sender, EventArgs e)
@@ -105,11 +105,16 @@ namespace OOPCourseWork
             pnlRegister.Visible = true;
         }
 
-        //if the login label is clicken then the login panel will show and the register panel will be hidden
+        // if the link label is clicked on the register panel then the login panel will show and register will be hidden 
         private void lblLLongin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             pnlLogin.Visible = true;
             pnlRegister.Visible = false;
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

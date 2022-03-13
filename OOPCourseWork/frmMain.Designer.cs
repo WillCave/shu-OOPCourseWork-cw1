@@ -212,7 +212,9 @@ namespace OOPCourseWorkApp
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voting System";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.tabUserRole.ResumeLayout(false);
             this.tabVoter.ResumeLayout(false);
             this.tabAdmin.ResumeLayout(false);

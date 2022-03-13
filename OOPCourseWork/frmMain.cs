@@ -85,6 +85,10 @@ namespace OOPCourseWorkApp
         /// </summary>
         private void initCandidates()
         {
+            // Check we have vote events
+            if (_currentVoteEvent == null)
+                return;
+
             //Get the candidates for specific vote event            
             _currentCandidates = _voteService.GetCandidates(_currentVoteEvent.VoteEventId);
 
@@ -127,7 +131,6 @@ namespace OOPCourseWorkApp
             tabUserRole.TabPages.Remove(tabAuditor);
             btnAddVoteEvent.Visible = true;
             VoteEvent voteEvent = (VoteEvent)cboVoteEvents.SelectedItem;
-            List<CandidateVotes> candidateVotes = _voteService.GetCandidateVotes(voteEvent.VoteEventId);
         }
 
         /// <summary>
@@ -206,6 +209,13 @@ namespace OOPCourseWorkApp
         /// <param name="e"></param>
         private void btnDeleteCandidate_Click(object sender, EventArgs e)
         {
+            // Check we have a vote event
+            if (_currentVoteEvent == null)
+            {
+                MessageBox.Show("Please select a vote event");
+                return;
+            }
+
             //Find the candidate name selected
             var candidateName = lstAdminCandidates.SelectedItems.Count > 0 ? lstAdminCandidates.SelectedItems[0].Text : null;
             if(candidateName == null)
@@ -241,6 +251,17 @@ namespace OOPCourseWorkApp
                 MessageBox.Show("Failed to delete candidate");
                 return;
             }
+        }
+
+        /// <summary>
+        /// Close the application on closing this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // TODO: Add are you sure you want to exit
+            Application.Exit();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace OOPCourseWorkApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 45);
+            this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 15);
             this.label1.TabIndex = 0;
@@ -45,16 +45,16 @@ namespace OOPCourseWorkApp
             // 
             // txtVoteEvent
             // 
-            this.txtVoteEvent.Location = new System.Drawing.Point(154, 42);
+            this.txtVoteEvent.Location = new System.Drawing.Point(145, 15);
             this.txtVoteEvent.Name = "txtVoteEvent";
             this.txtVoteEvent.Size = new System.Drawing.Size(165, 23);
             this.txtVoteEvent.TabIndex = 1;
             // 
             // btnAddVoteEvent
             // 
-            this.btnAddVoteEvent.Location = new System.Drawing.Point(124, 83);
+            this.btnAddVoteEvent.Location = new System.Drawing.Point(145, 56);
             this.btnAddVoteEvent.Name = "btnAddVoteEvent";
-            this.btnAddVoteEvent.Size = new System.Drawing.Size(106, 35);
+            this.btnAddVoteEvent.Size = new System.Drawing.Size(165, 35);
             this.btnAddVoteEvent.TabIndex = 2;
             this.btnAddVoteEvent.Text = "Add Vote Event";
             this.btnAddVoteEvent.UseVisualStyleBackColor = true;
@@ -64,12 +64,13 @@ namespace OOPCourseWorkApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 142);
+            this.ClientSize = new System.Drawing.Size(330, 107);
             this.Controls.Add(this.btnAddVoteEvent);
             this.Controls.Add(this.txtVoteEvent);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmVoteEvent";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmVoteEvent";
             this.ResumeLayout(false);
             this.PerformLayout();

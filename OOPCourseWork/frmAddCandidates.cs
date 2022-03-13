@@ -28,6 +28,13 @@ namespace OOPCourseWorkApp
 
         private void btnAddCandidate_Click(object sender, EventArgs e)
         {
+            // Check we have a vote event
+            if( _voteEvent == null )
+            {
+                MessageBox.Show("Please select a vote event");
+                return;
+            }
+
             //Making sure that something has been entered into the textbox
             if (String.IsNullOrEmpty(txtAddCandidates.Text))
             {

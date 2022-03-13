@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPCourseWorkApp", "OOPCourseWork\OOPCourseWorkApp.csproj", "{018458EF-425D-4D8F-A8CC-E63FD6E9B30A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPCourseWorkAPI", "OOPCourseWorkAPI\OOPCourseWorkAPI.csproj", "{44A29FA0-7C51-4E58-8A7E-01E51EB6E543}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPCourseWorkAPI", "OOPCourseWorkAPI\OOPCourseWorkAPI.csproj", "{44A29FA0-7C51-4E58-8A7E-01E51EB6E543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPCourseWorkUnitTests", "OOPCourseWorkUnitTests\OOPCourseWorkUnitTests.csproj", "{C4540B1E-B3EF-4406-BA28-4D3C8146D6EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPCourseWorkUnitTests", "OOPCourseWorkUnitTests\OOPCourseWorkUnitTests.csproj", "{C4540B1E-B3EF-4406-BA28-4D3C8146D6EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

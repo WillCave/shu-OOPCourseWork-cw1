@@ -37,7 +37,7 @@ namespace OOPCourseWorkApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 61);
+            this.label1.Location = new System.Drawing.Point(28, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 15);
             this.label1.TabIndex = 0;
@@ -45,9 +45,9 @@ namespace OOPCourseWorkApp
             // 
             // btnAddCandidate
             // 
-            this.btnAddCandidate.Location = new System.Drawing.Point(131, 98);
+            this.btnAddCandidate.Location = new System.Drawing.Point(164, 62);
             this.btnAddCandidate.Name = "btnAddCandidate";
-            this.btnAddCandidate.Size = new System.Drawing.Size(103, 47);
+            this.btnAddCandidate.Size = new System.Drawing.Size(176, 47);
             this.btnAddCandidate.TabIndex = 1;
             this.btnAddCandidate.Text = "Add New Candidate";
             this.btnAddCandidate.UseVisualStyleBackColor = true;
@@ -55,7 +55,7 @@ namespace OOPCourseWorkApp
             // 
             // txtAddCandidates
             // 
-            this.txtAddCandidates.Location = new System.Drawing.Point(164, 58);
+            this.txtAddCandidates.Location = new System.Drawing.Point(164, 18);
             this.txtAddCandidates.Name = "txtAddCandidates";
             this.txtAddCandidates.Size = new System.Drawing.Size(176, 23);
             this.txtAddCandidates.TabIndex = 2;
@@ -64,12 +64,13 @@ namespace OOPCourseWorkApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 192);
+            this.ClientSize = new System.Drawing.Size(380, 127);
             this.Controls.Add(this.txtAddCandidates);
             this.Controls.Add(this.btnAddCandidate);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddCandidates";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAddCandidates";
             this.ResumeLayout(false);
             this.PerformLayout();
