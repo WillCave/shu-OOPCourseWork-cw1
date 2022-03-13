@@ -12,6 +12,13 @@ namespace OOPCourseWorkApp
 {
     public partial class VoteControl : UserControl
     {
+
+        /// <summary>
+        /// Called when a vote or revoke is completed
+        /// </summary>
+        public event EventHandler OnCompleted;
+
+
         private  IVoteService _voteService;
         private VoteEvent _currentVoteEvent;
         private long _currentUserId;
@@ -85,6 +92,9 @@ namespace OOPCourseWorkApp
             MessageBox.Show("Thank you for Voting");
 
             InitView();
+
+            if (OnCompleted != null)
+                OnCompleted.Invoke(this, null);
             
         }
 
@@ -101,6 +111,9 @@ namespace OOPCourseWorkApp
             _voteService.RevokeVote(_currentVoteEvent.VoteEventId, _currentUserId);
             MessageBox.Show("Vote successfully cancelled");
             InitView();
+
+            if (OnCompleted != null)
+                OnCompleted.Invoke(this, null);
         }
     }
 }

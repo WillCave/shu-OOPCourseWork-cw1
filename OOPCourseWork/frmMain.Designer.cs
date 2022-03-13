@@ -38,6 +38,7 @@ namespace OOPCourseWorkApp
             this.lstAdminCandidates = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.tabAuditor = new System.Windows.Forms.TabPage();
+            this.btnAddVote = new System.Windows.Forms.Button();
             this.lstCandidates = new System.Windows.Forms.ListView();
             this.colCandidateName = new System.Windows.Forms.ColumnHeader();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -133,6 +134,7 @@ namespace OOPCourseWorkApp
             // 
             // tabAuditor
             // 
+            this.tabAuditor.Controls.Add(this.btnAddVote);
             this.tabAuditor.Controls.Add(this.lstCandidates);
             this.tabAuditor.Location = new System.Drawing.Point(4, 24);
             this.tabAuditor.Name = "tabAuditor";
@@ -141,6 +143,16 @@ namespace OOPCourseWorkApp
             this.tabAuditor.TabIndex = 2;
             this.tabAuditor.Text = "Auditor";
             this.tabAuditor.UseVisualStyleBackColor = true;
+            // 
+            // btnAddVote
+            // 
+            this.btnAddVote.Location = new System.Drawing.Point(339, 205);
+            this.btnAddVote.Name = "btnAddVote";
+            this.btnAddVote.Size = new System.Drawing.Size(168, 26);
+            this.btnAddVote.TabIndex = 1;
+            this.btnAddVote.Text = "Add Manual Vote";
+            this.btnAddVote.UseVisualStyleBackColor = true;
+            this.btnAddVote.Click += new System.EventHandler(this.btnAddVote_Click);
             // 
             // lstCandidates
             // 
@@ -241,5 +253,6 @@ namespace OOPCourseWorkApp
         private System.Windows.Forms.Button btnAddCandidate;
         private System.Windows.Forms.Button btnDeleteCandidate;
         private VoteControl ctlVoteControl;
+        private System.Windows.Forms.Button btnAddVote;
     }
 }

@@ -13,10 +13,9 @@ using System.Linq;
 namespace OOPCourseWorkApp
 {
     public partial class frmMain : Form
-    {
-
-        
+    {        
         private User _user;
+        private IUserService _userService;
         private IVoteService _voteService;
         private VoteEvent _currentVoteEvent;
         private List<Candidate> _currentCandidates;        
@@ -30,6 +29,7 @@ namespace OOPCourseWorkApp
             _user = user;
 
             // Create required services
+            _userService = new UserService(Program.DBConnectionString);
             _voteService = new VoteService(Program.DBConnectionString);
 
             InitializeComponent();
@@ -251,6 +251,14 @@ namespace OOPCourseWorkApp
                 MessageBox.Show("Failed to delete candidate");
                 return;
             }
+        }
+        private void btnAddVote_Click(object sender, EventArgs e)
+        {
+            frmManualVote manualVote = new frmManualVote(_userService,_voteService, _currentVoteEvent, _currentCandidates);
+            manualVote.ShowDialog();
+
+            //Refresh Candidates list
+            initCandidates();
         }
 
         /// <summary>

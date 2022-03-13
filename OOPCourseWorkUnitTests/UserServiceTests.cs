@@ -113,6 +113,53 @@ namespace OOPCourseWorkUnitTests
 
             //Check
             Assert.IsNull(user, "user should be null");
-        } 
+        }
+        [TestMethod]
+        public void ManuallyRegisterUser()
+        {
+            //Set Up
+            var userService = new UserService(DatabaseTestHelpers.TestConnectionString);
+
+            //Test
+            var user = userService.ManualRegister("Will", "Cave", new DateTime(2002, 2, 8));
+
+            //Check
+            Assert.AreEqual("Will", user.FirstName, "Incorrect Firstname");
+            Assert.AreEqual("Cave", user.LastName, "Incorrect Lastname");
+            Assert.AreEqual("WillCave08/02/2002", user.UserName, "Incorrect Username");
+        }
+        [TestMethod]
+        public void ManualRegisterExistingUser()
+        {
+            //Set Up register initial user
+            var userService = new UserService(DatabaseTestHelpers.TestConnectionString);
+            userService.ManualRegister("Will", "Cave", new DateTime(2002, 2, 8));
+
+            //Test  
+            var registerAction = new Action(() => { var user = userService.ManualRegister("Will", "Cave", new DateTime(2002, 2, 8)); });
+
+            //Check
+            Assert.ThrowsException<Exception>(registerAction, "A person with this first name, last name and DOB already exists");
+        }
+        [TestMethod]
+        public void IsManualUserNameAvailable()
+        {
+            //Set Up
+            var userService = new UserService(DatabaseTestHelpers.TestConnectionString);
+            userService.ManualRegister("Will", "Cave", new DateTime(2002,2,8));
+            userService.ManualRegister("Phil", "Cave",new DateTime(1972, 3, 15));
+
+            //Test
+            var wcaveAvailable = userService.IsManualUserAvailable("Will", "Cave", new DateTime(2002, 2, 8));
+            var pcaveAvailable = userService.IsManualUserAvailable("Phil", "Cave", new DateTime(1972, 3, 15));
+            var lcaveAvailable = userService.IsManualUserAvailable("Lee", "Cave", new DateTime(1975, 6, 20));
+            var scaveAvailable = userService.IsManualUserAvailable("Ste", "Cave", new DateTime(1969, 6, 12));
+
+            //Check
+            Assert.AreEqual(false, wcaveAvailable, "Will Cave should not be available");
+            Assert.AreEqual(false, pcaveAvailable, "Phil Cave should not be available");
+            Assert.AreEqual(true, lcaveAvailable, "Lee Cave should be available");
+            Assert.AreEqual(true, scaveAvailable, "Ste Cave should not be available");
+        }
     }
 }

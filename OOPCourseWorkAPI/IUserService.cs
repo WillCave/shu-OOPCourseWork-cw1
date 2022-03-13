@@ -35,6 +35,24 @@ namespace OOPCourseWorkAPI
         /// <param name="password"></param>
         /// <returns>User if succesful otherwise Null</returns>
         User LoginUser(string userName, string password);
+
+        /// <summary>
+        /// Manual Register only for the auditor
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        ///  <param name="Dob"></param>
+        /// <returns>A newly registered voter otherwise a error</returns>
+        User ManualRegister(string firstName, string lastName, DateTime Dob);
+
+        /// <summary>
+        /// Check to see if the auditor is able to register user manually
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        ///  <param name="Dob"></param>
+        /// <returns>true if available otherwise false</returns>
+        bool IsManualUserAvailable(string firstName, string lastName, DateTime Dob);  
      
     }
 }
