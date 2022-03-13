@@ -27,7 +27,6 @@ namespace OOPCourseWorkApp
 
             pnlManualRegister.Visible = true;
             ctlManualVoteControl.Visible = false;
-            ctlManualVoteControl.OnCompleted += CtlManualVoteControl_OnCompleted;
         }
 
        
@@ -45,15 +44,15 @@ namespace OOPCourseWorkApp
                 return;
             }
 
-            //Check to see if username is available
-            if (_userService.IsManualUserAvailable(firstName, lastName, DOB) == false)
-            {
-                MessageBox.Show("A user with first name,last name and DOB already exists");
-                return;
-            }
+            //Check if the manual user exists as they may want to change their vote
+            _manualUser = _userService.GetManualUser(firstName, lastName, DOB);
 
-            //Create the manual user
-            _manualUser = _userService.ManualRegister(firstName, lastName, DOB);
+            //No manual user exists so cretae one
+            if (_manualUser == null)
+            {
+                //Create the manual user
+                _manualUser = _userService.ManualRegister(firstName, lastName, DOB);
+            }
 
             //Switch to log the manual user to vote
             pnlManualRegister.Visible = false;
@@ -64,14 +63,8 @@ namespace OOPCourseWorkApp
             this.Refresh();            
         }
 
-        /// <summary>
-        /// Called when the vote control is completed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CtlManualVoteControl_OnCompleted(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            // Close the Form when vote is complete
             this.Close();
         }
     }

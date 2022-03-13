@@ -52,7 +52,16 @@ namespace OOPCourseWorkAPI
         /// <param name="lastName"></param>
         ///  <param name="Dob"></param>
         /// <returns>true if available otherwise false</returns>
-        bool IsManualUserAvailable(string firstName, string lastName, DateTime Dob);  
-     
+        bool IsManualUserAvailable(string firstName, string lastName, DateTime Dob);
+
+        /// <summary>
+        /// Gets the manual user
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        ///  <param name="Dob"></param>
+        /// <returns>Logs in otherwise a error</returns>
+        User GetManualUser(string firstName, string lastName, DateTime Dob);
+
     }
 }

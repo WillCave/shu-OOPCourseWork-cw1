@@ -31,7 +31,6 @@ namespace OOPCourseWorkApp
         {
             this.pnlManualRegister = new System.Windows.Forms.Panel();
             this.dtpDob = new System.Windows.Forms.DateTimePicker();
-            this.ctlManualVoteControl = new OOPCourseWorkApp.VoteControl();
             this.label4 = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
@@ -39,6 +38,8 @@ namespace OOPCourseWorkApp
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
+            this.ctlManualVoteControl = new OOPCourseWorkApp.VoteControl();
+            this.btnClose = new System.Windows.Forms.Button();
             this.pnlManualRegister.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,13 +65,6 @@ namespace OOPCourseWorkApp
             this.dtpDob.Size = new System.Drawing.Size(141, 23);
             this.dtpDob.TabIndex = 9;
             this.dtpDob.Value = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
-            // 
-            // ctlManualVoteControl
-            // 
-            this.ctlManualVoteControl.Location = new System.Drawing.Point(282, 12);
-            this.ctlManualVoteControl.Name = "ctlManualVoteControl";
-            this.ctlManualVoteControl.Size = new System.Drawing.Size(359, 172);
-            this.ctlManualVoteControl.TabIndex = 1;
             // 
             // label4
             // 
@@ -132,11 +126,29 @@ namespace OOPCourseWorkApp
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // ctlManualVoteControl
+            // 
+            this.ctlManualVoteControl.Location = new System.Drawing.Point(282, 12);
+            this.ctlManualVoteControl.Name = "ctlManualVoteControl";
+            this.ctlManualVoteControl.Size = new System.Drawing.Size(359, 172);
+            this.ctlManualVoteControl.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(282, 200);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(88, 26);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmManualVote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 197);
+            this.ClientSize = new System.Drawing.Size(378, 234);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pnlManualRegister);
             this.Controls.Add(this.ctlManualVoteControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -161,5 +173,6 @@ namespace OOPCourseWorkApp
         private VoteControl ctlManualVoteControl;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpDob;
+        private System.Windows.Forms.Button btnClose;
     }
 }

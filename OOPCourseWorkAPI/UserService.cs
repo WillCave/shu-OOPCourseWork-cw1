@@ -71,13 +71,25 @@ namespace OOPCourseWorkAPI
         }
 
         /// <inheritdoc/>
+        public User GetManualUser(string firstName, string lastName, DateTime Dob)
+        {  
+            //Manual username is name combined with DOB
+            var userName = firstName + lastName + Dob.ToShortDateString();
+
+            //Registers the user with the normal structure
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                return connection.Query<User>($"SELECT * FROM Users WHERE Username = '{userName}'").FirstOrDefault();
+            }
+        }
+
+        /// <inheritdoc/>
         public User LoginUser(string userName, string password)
         {
             using (var connection = new SqliteConnection(_connectionString))
             {
                 return connection.Query<User>($"SELECT * FROM Users WHERE Username = '{userName}' AND PasswordHash ='{password}'").FirstOrDefault();
             }
-        }
-      
+        }      
     }
 }
