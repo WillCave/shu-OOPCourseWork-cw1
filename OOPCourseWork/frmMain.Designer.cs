@@ -130,7 +130,7 @@ namespace OOPCourseWorkApp
             // 
             this.columnHeader1.Tag = "CandidateName";
             this.columnHeader1.Text = "Candidate";
-            this.columnHeader1.Width = 200;
+            this.columnHeader1.Width = 400;
             // 
             // tabAuditor
             // 
@@ -170,7 +170,7 @@ namespace OOPCourseWorkApp
             // 
             this.colCandidateName.Tag = "CandidateName";
             this.colCandidateName.Text = "Candidate";
-            this.colCandidateName.Width = 200;
+            this.colCandidateName.Width = 400;
             // 
             // lblUserName
             // 
